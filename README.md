@@ -1,3 +1,25 @@
+## Reminders on Cloning
+
+- Have PHP and Composer
+- Use "composer install" for the dependencies
+- Create an empty animal_bite_center_db database in MySQL (for db migration, see below)
+- Update the .env file with the details below
+- Use "php artisan key:generate"
+
+## REQUIRED in the .env File
+
+DB_CONNECTION=mysql <br>
+DB_HOST=127.0.0.1 <br>
+DB_PORT=3306 <br>
+DB_DATABASE=animal_bite_center_db <br>
+DB_USERNAME=root <br>
+DB_PASSWORD= <br>
+
+## Migrations and Dummy Data
+
+- Use "php artisan migrate:fresh --seed" to migrate tables and create dummy data using the seeders.
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
