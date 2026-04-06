@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('animal_type');
             $table->enum('animal_condition', ['Healthy', 'Sick', 'Lost', 'Dead']);
             $table->enum('exposure_category', ['I', 'II', 'III']);
+            $table->string('rig_brand'); //optional immunization
+            $table->string('tetanus_brand'); //optional immunization
             $table->string('remarks');
             $table->timestamps();
         });

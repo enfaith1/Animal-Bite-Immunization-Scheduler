@@ -22,5 +22,6 @@ class Patient extends Model
     //Relationship: Patient can have multiple VaxRecords
     public function vaxRecords():HasMany {
         return $this->hasMany(VaxRecord::class, 'patient_id', 'id');
+        //Allows direct access to vaxRecords via Patient::find($id)->vaxRecords;
     }
 }

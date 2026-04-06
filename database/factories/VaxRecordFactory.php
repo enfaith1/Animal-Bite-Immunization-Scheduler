@@ -26,6 +26,8 @@ class VaxRecordFactory extends Factory
             'animal_type' => fake()->randomElement(['cat', 'dog', 'bat', 'other']),
             'animal_condition' => fake()->randomElement(['Healthy', 'Sick', 'Lost', 'Dead']),
             'exposure_category' => fake()->randomElement(['I', 'II', 'III']),
+            'rig_brand' => fake()->randomElement(['Equirab', 'Vinrab', 'Bayrab', 'Rabuman']),
+            'tetanus_brand' => fake()->randomElement(['T-Vac', 'Imatet', 'Abhay-TOX', 'Tetavax']),
             'remarks' => fake()->sentence(),
             'patient_id' => Patient::inRandomOrder()->first()->id
         ];
