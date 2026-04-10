@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\VaxRecordController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -22,3 +23,8 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 //Automatically handles the following:
 //patients.index, patients.create, patients.store, patients.show, patients.edit, patients.update, patients.destroy
 Route::resource('patients', PatientController::class);
+
+//Utilizes shallow nesting
+//patients.vaxRecords.index, patients.vaxRecords.create, patients.vaxRecords.store
+//vaxRecords.show, vaxRecords.edit, vaxRecords.update, vaxRecords.destroy 
+Route::resource('patients.vaxRecords', VaxRecordController::class)->shallow();

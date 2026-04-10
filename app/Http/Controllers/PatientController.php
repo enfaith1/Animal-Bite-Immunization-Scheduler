@@ -29,7 +29,7 @@ class PatientController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'fname' => 'required|string|max:50',
             'lname' => 'required|string|max:50',
             'address' => 'required|string',
@@ -38,7 +38,7 @@ class PatientController extends Controller
             'emergency_num' => 'required|string|max:20'
         ]);
 
-        Patient::create($request->all());
+        Patient::create($validated);
 
         return redirect()->route('patients.index')
             ->with('success', 'Patient was created successfully.');
@@ -65,7 +65,7 @@ class PatientController extends Controller
      */
     public function update(Request $request, Patient $patient)
     {
-        $request->validate([
+        $validated = $request->validate([
             'fname' => 'required|string|max:50',
             'lname' => 'required|string|max:50',
             'address' => 'required|string',
@@ -74,7 +74,7 @@ class PatientController extends Controller
             'emergency_num' => 'required|string|max:20'
         ]);
 
-        $patient->update($request->all());
+        $patient->update($validated);
 
         return redirect()->route('patients.index')
             ->with('success', 'Patient was updated successfully.');
