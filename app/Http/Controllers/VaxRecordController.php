@@ -103,4 +103,5 @@ class VaxRecordController extends Controller
         return redirect()->route('patients.vaxRecords.index', $patient)
             ->with('success', 'Vaccination Record was deleted successfully.');
     }
+
 }

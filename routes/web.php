@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\VaxRecordController;
+use App\Http\Controllers\VaxScheduleController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -28,3 +29,7 @@ Route::resource('patients', PatientController::class);
 //patients.vaxRecords.index, patients.vaxRecords.create, patients.vaxRecords.store
 //vaxRecords.show, vaxRecords.edit, vaxRecords.update, vaxRecords.destroy 
 Route::resource('patients.vaxRecords', VaxRecordController::class)->shallow();
+
+//vaxRecords.vaxSchedules.index, vaxRecords.vaxSchedules.create, vaxRecords.vaxSchedules.store
+//vaxSchedules.show, vaxSchedules.edit, vaxSchedules.update, vaxSchedules.destroy 
+Route::resource('vaxRecords.vaxSchedules', VaxScheduleController::class)->shallow();
