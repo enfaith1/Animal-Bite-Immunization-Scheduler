@@ -43,7 +43,7 @@
                                 @forelse($patients as $patient)
                                 <tr>
                                     <td>
-                                        <span class="fw-bold">{{ $patient->patient_id }}</span>
+                                        <span class="fw-bold">{{ $patient->id }}</span>
                                     </td>
                                     <td>
                                         <div class="fw-bold">{{ $patient->fname }} {{ $patient->lname }}</div>
@@ -59,13 +59,13 @@
                                         <i class="fas fa-phone-alt me-1" style="color: #9EB698;"></i> {{ $patient->emergency_num }}
                                     </td>
                                     <td class="text-center">
-                                        <a href="{{ route('patients.show', $patient->patient_id) }}" class="btn btn-sm btn-primary-custom" style="padding: 6px 12px; border-radius: 8px; margin: 0 3px;">
+                                        <a href="{{ route('patients.show', $patient) }}" class="btn btn-sm btn-primary-custom" style="padding: 6px 12px; border-radius: 8px; margin: 0 3px;">
                                             <i class="fas fa-eye"></i>
                                         </a>
-                                        <a href="{{ route('patients.edit', $patient->patient_id) }}" class="btn btn-sm btn-warning-custom" style="padding: 6px 12px; border-radius: 8px; margin: 0 3px;">
+                                        <a href="{{ route('patients.edit', $patient) }}" class="btn btn-sm btn-warning-custom" style="padding: 6px 12px; border-radius: 8px; margin: 0 3px;">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <form action="{{ route('patients.destroy', $patient->patient_id) }}" method="POST" class="d-inline">
+                                        <form action="{{ route('patients.destroy', $patient) }}" method="POST" class="d-inline">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger-custom" onclick="return confirm('Delete this patient? This action cannot be undone.')" style="padding: 6px 12px; border-radius: 8px; margin: 0 3px;">

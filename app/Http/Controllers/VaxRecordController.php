@@ -13,8 +13,9 @@ class VaxRecordController extends Controller
      */
     public function index(Patient $patient)
     {
-        $vaxRecords = $patient->vaxRecords;
-        return view('vaxRecords.index', compact('vaxRecords', 'patient'));
+        $vaxRecords = $patient->vaxRecords()->latest()->paginate(10);
+
+        return view('vax-records.index', compact('vaxRecords', 'patient'));
     }
 
     /**
@@ -22,7 +23,7 @@ class VaxRecordController extends Controller
      */
     public function create(Patient $patient)
     {
-        return view('vaxRecords.create', compact('patient'));
+        return view('vax-records.create', compact('patient'));
     }
 
     /**
@@ -55,7 +56,9 @@ class VaxRecordController extends Controller
      */
     public function show(VaxRecord $vaxRecord)
     {
-        return view('vaxRecord.show', compact('vaxRecord'));
+        $patient = $vaxRecord->patient;
+
+        return view('vax-records.show', compact('vaxRecord', 'patient'));
     }
 
     /**
@@ -63,7 +66,9 @@ class VaxRecordController extends Controller
      */
     public function edit(VaxRecord $vaxRecord)
     {
-        return view('vaxRecord.edit', compact('vaxRecord'));
+        $patient = $vaxRecord->patient;
+
+        return view('vax-records.edit', compact('vaxRecord', 'patient'));
     }
 
     /**

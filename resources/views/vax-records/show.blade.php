@@ -11,7 +11,7 @@
                             <i class="fas fa-file-medical me-2"></i> Vaccination Record
                         </h4>
                         <div class="d-flex gap-2">
-                            <a href="{{ route('vax-records.index', $patient->patient_id) }}" class="btn btn-light btn-sm rounded-pill">
+                            <a href="{{ route('patients.vaxRecords.index', $patient) }}" class="btn btn-light btn-sm rounded-pill">
                                 <i class="fas fa-arrow-left me-1"></i> Back to List
                             </a>
                         </div>
@@ -34,7 +34,7 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label fw-semibold text-muted small">RECORD ID</label>
-                                        <p class="fw-medium fs-5 mb-0">{{ $vaxRecord->vax_rec_id }}</p>
+                                        <p class="fw-medium fs-5 mb-0">{{ $vaxRecord->id }}</p>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label fw-semibold text-muted small">DATE OF EXPOSURE</label>
@@ -99,7 +99,7 @@
                             </h5>
                         </div>
                         <div class="card-body">
-                            @if($vaxRecord->schedules->count() > 0)
+                            @if($vaxRecord->vaxSchedules->count() > 0)
                                 <div class="table-responsive">
                                     <table class="table table-bordered mb-0">
                                         <thead style="background: #DAFIDE;">
@@ -112,8 +112,8 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach($vaxRecord->schedules as $schedule)
-                                            <form action="{{ route('vax-records.update-schedule', [$patient->patient_id, $vaxRecord->vax_rec_id, $schedule->schedule_id]) }}" method="POST">
+                                            @foreach($vaxRecord->vaxSchedules as $schedule)
+                                            <form action="{{ route('vaxSchedules.update', $schedule) }}" method="POST">
                                                 @csrf
                                                 @method('PUT')
                                                 <tr>
@@ -121,13 +121,13 @@
                                                     <td>{{ date('F d, Y', strtotime($schedule->scheduled_date)) }}</td>
                                                     <td>
                                                         <select name="status" class="form-select form-select-sm rounded-pill" style="width: auto; min-width: 110px;">
-                                                            <option value="pending" {{ $schedule->status == 'pending' ? 'selected' : '' }}>Pending</option>
-                                                            <option value="completed" {{ $schedule->status == 'completed' ? 'selected' : '' }}>Completed</option>
-                                                            <option value="missed" {{ $schedule->status == 'missed' ? 'selected' : '' }}>Missed</option>
+                                                            <option value="Upcoming" {{ $schedule->status == 'Upcoming' ? 'selected' : '' }}>Upcoming</option>
+                                                            <option value="Completed" {{ $schedule->status == 'Completed' ? 'selected' : '' }}>Completed</option>
+                                                            <option value="Missed" {{ $schedule->status == 'Missed' ? 'selected' : '' }}>Missed</option>
                                                         </select>
                                                     </td>
                                                     <td>
-                                                        <input type="date" name="administered_date" class="form-control form-control-sm" style="width: auto; min-width: 130px;" value="{{ $schedule->administered_date ? date('Y-m-d', strtotime($schedule->administered_date)) : '' }}">
+                                                        <input type="date" name="actual_date" class="form-control form-control-sm" style="width: auto; min-width: 130px;" value="{{ $schedule->actual_date ? date('Y-m-d', strtotime($schedule->actual_date)) : '' }}">
                                                     </td>
                                                     <td class="text-center">
                                                         <button type="submit" class="btn btn-sm rounded-pill px-3 text-white" style="background: linear-gradient(135deg, #9EB698 0%, #235347 100%);">

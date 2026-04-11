@@ -10,7 +10,7 @@
                         <h4 class="text-white mb-0">
                             <i class="fas fa-edit me-2"></i> Edit Vaccination Record
                         </h4>
-                        <a href="{{ route('vax-records.index', $patient->patient_id) }}" class="btn btn-light btn-sm rounded-pill">
+                        <a href="{{ route('patients.vaxRecords.index', $patient) }}" class="btn btn-light btn-sm rounded-pill">
                             <i class="fas fa-arrow-left me-1"></i> Back to List
                         </a>
                     </div>
@@ -20,7 +20,7 @@
                 </div>
                 
                 <div class="card-body p-4">
-                    <form action="{{ route('vax-records.update', [$patient->patient_id, $vaxRecord->vax_rec_id]) }}" method="POST">
+                    <form action="{{ route('vaxRecords.update', $vaxRecord) }}" method="POST">
                         @csrf
                         @method('PUT')
                         
@@ -171,7 +171,7 @@
                         </div>
                         
                         <div class="d-flex gap-3 justify-content-end mt-4 pt-3">
-                            <a href="{{ route('vax-records.index', $patient->patient_id) }}" class="btn btn-outline-secondary rounded-pill px-4">Cancel</a>
+                            <a href="{{ route('patients.vaxRecords.index', $patient) }}" class="btn btn-outline-secondary rounded-pill px-4">Cancel</a>
                             <button type="submit" class="btn px-4 rounded-pill text-white" style="background: linear-gradient(135deg, #9EB698 0%, #235347 100%);">
                                 <i class="fas fa-save me-2"></i> Update Record
                             </button>
