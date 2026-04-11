@@ -62,15 +62,15 @@
                                 
                                 <div class="mb-3">
                                     <label class="form-label fw-semibold">Rabies Brand <span class="text-danger">*</span></label>
-                                    <select name="rig_brand" class="form-select rounded-3 @error('rig_brand') is-invalid @enderror" required>
+                                    <select name="antirabies" class="form-select rounded-3 @error('antirabies') is-invalid @enderror" required>
                                         <option value="">Select Rabies Vaccine Brand</option>
-                                        <option value="Abhayrab">Abhayrab</option>
-                                        <option value="ChiroRab">ChiroRab</option>
-                                        <option value="VaxiRab">VaxiRab</option>
-                                        <option value="Verorab">Verorab</option>
-                                        <option value="Speeda">Speeda</option>
+                                        <option value="1">Abhayrab</option>
+                                        <option value="2">ChiroRab</option>
+                                        <option value="3">VaxiRab</option>
+                                        <option value="4">Verorab</option>
+                                        <option value="5">Speeda</option>
                                     </select>
-                                    @error('rig_brand')
+                                    @error('antirabies')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -110,8 +110,16 @@
                                 
                                 <div class="mb-3">
                                     <label class="form-label fw-semibold">Tetanus Brand</label>
-                                    <input type="text" name="tetanus_brand" class="form-control rounded-3" placeholder="e.g., Tetavax, Tetanus Toxoid, etc.">
+                                    <input type="text" name="tetanus_brand" class="form-control rounded-3" placeholder="e.g. T-Vac, Imatet, Abhay-TOX, Tetavax, etc.">
                                     @error('tetanus_brand')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">RIG Brand</label>
+                                    <input type="text" name="rig_brand" class="form-control rounded-3" placeholder="e.g. Equirab, Vinrab, Bayrab, Rabuman, etc.">
+                                    @error('rig_brand')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -131,23 +139,19 @@
                                             <div class="col-md-12">
                                                 <div class="d-flex flex-wrap gap-4">
                                                     <div class="form-check">
-                                                        <input type="checkbox" name="vaccination_days[]" value="Day 0" id="day0" class="form-check-input">
-                                                        <label class="form-check-label fw-semibold" for="day0">Day 0 (Today)</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input type="checkbox" name="vaccination_days[]" value="Day 3" id="day3" class="form-check-input">
+                                                        <input type="checkbox" name="vaccination_days[]" value="3" id="day3" class="form-check-input">
                                                         <label class="form-check-label fw-semibold" for="day3">Day 3</label>
                                                     </div>
                                                     <div class="form-check">
-                                                        <input type="checkbox" name="vaccination_days[]" value="Day 7" id="day7" class="form-check-input">
+                                                        <input type="checkbox" name="vaccination_days[]" value="7" id="day7" class="form-check-input">
                                                         <label class="form-check-label fw-semibold" for="day7">Day 7</label>
                                                     </div>
                                                     <div class="form-check">
-                                                        <input type="checkbox" name="vaccination_days[]" value="Day 14" id="day14" class="form-check-input">
+                                                        <input type="checkbox" name="vaccination_days[]" value="14" id="day14" class="form-check-input">
                                                         <label class="form-check-label fw-semibold" for="day14">Day 14</label>
                                                     </div>
                                                     <div class="form-check">
-                                                        <input type="checkbox" name="vaccination_days[]" value="Day 28" id="day28" class="form-check-input">
+                                                        <input type="checkbox" name="vaccination_days[]" value="28" id="day28" class="form-check-input">
                                                         <label class="form-check-label fw-semibold" for="day28">Day 28</label>
                                                     </div>
                                                 </div>

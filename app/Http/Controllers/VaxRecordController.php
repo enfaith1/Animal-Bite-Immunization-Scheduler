@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Patient;
 use App\Models\VaxRecord;
+use App\Models\VaxSchedule;
 use Illuminate\Http\Request;
 
 class VaxRecordController extends Controller
@@ -45,11 +46,34 @@ class VaxRecordController extends Controller
             'remarks' => 'nullable|string'
         ]);
 
-        $patient->vaxRecords()->create($validated);
+        $vaxRecord = $patient->vaxRecords()->create($validated);
+        $day0 = $vaxRecord->date_of_visit;
 
-        $name = "Chantal Rivera";
-        Mail::to('chantalylirivera@gmail.com')->send(new EmailSchedule($name));
+        $validated = $request->validate([
+            'antirabies' => 'required|integer'
+        ]);
 
+        $antirabies = $validated['antirabies'];
+        $selectedDays = $request->input('vaccination_days', []);
+
+        $vaxRecord->vaxSchedules()->create([
+            'dose_day' => '0',
+            'scheduled_date' => $day0,
+            'actual_date' => $day0,
+            'status' => 'Completed',
+            'vax_brand_id' => $antirabies
+        ]);
+
+        foreach ($selectedDays as $day) {
+            $vaxRecord->vaxSchedules()->create([
+                'dose_day' => $day,
+                'scheduled_date' => $day0->addDays((int)$day),
+                'vax_brand_id' => $antirabies
+            ]);
+        }
+
+        // $name = "Chantal Rivera";
+        // Mail::to('chantalylirivera@gmail.com')->send(new EmailSchedule($name));
 
         return redirect()->route('patients.vaxRecords.index', $patient)
             ->with('success', 'Vaccination Record was created successfully.');

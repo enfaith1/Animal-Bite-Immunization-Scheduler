@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('vax_record_id')->constrained()->onDelete('cascade');
             $table->foreignId('vax_brand_id')->constrained()->onDelete('cascade');
-            $table->enum('dose_day', ['3', '7', '14', '28']);
+            $table->enum('dose_day', ['0', '3', '7', '14', '28']);
             $table->date('scheduled_date');
             $table->date('actual_date')->nullable();
             $table->enum('status', ['Completed', 'Upcoming', 'Missed'])->default('Upcoming');

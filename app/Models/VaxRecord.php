@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class VaxRecord extends Model
 {
+    protected $casts = [
+        'date_of_visit' => 'date',
+    ];
+
     protected $fillable = [
         'patient_id',
         'date_of_exposure',
