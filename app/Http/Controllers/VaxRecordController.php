@@ -6,6 +6,7 @@ use App\Models\Patient;
 use App\Models\VaxRecord;
 use App\Models\VaxSchedule;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class VaxRecordController extends Controller
 {
@@ -36,7 +37,7 @@ class VaxRecordController extends Controller
 
             'date_of_exposure' => 'required|date',
             'date_of_visit' => 'required|date',
-            'place_of_exposure' => 'required|string',
+            'place_of_exposure' => 'nullable|string',
             'exposure_type' => 'required|string',
             'animal_type' => 'required|string',
             'animal_condition' => 'required|string|in:Healthy,Sick,Lost,Dead',
@@ -85,6 +86,9 @@ class VaxRecordController extends Controller
     public function show(VaxRecord $vaxRecord)
     {
         $patient = $vaxRecord->patient;
+        if (!$patient) {
+            abort(404, 'Patient for this vaccination record not found.');
+        }
 
         return view('vax-records.show', compact('vaxRecord', 'patient'));
     }
@@ -95,6 +99,9 @@ class VaxRecordController extends Controller
     public function edit(VaxRecord $vaxRecord)
     {
         $patient = $vaxRecord->patient;
+        if (!$patient) {
+            abort(404, 'Patient for this vaccination record not found.');
+        }
 
         return view('vax-records.edit', compact('vaxRecord', 'patient'));
     }
@@ -107,7 +114,7 @@ class VaxRecordController extends Controller
         $validated = $request->validate([
             'date_of_exposure' => 'required|date',
             'date_of_visit' => 'required|date',
-            'place_of_exposure' => 'required|string',
+            'place_of_exposure' => 'nullable|string',
             'exposure_type' => 'required|string',
             'animal_type' => 'required|string',
             'animal_condition' => 'required|string|in:Healthy,Sick,Lost,Dead',
@@ -120,6 +127,9 @@ class VaxRecordController extends Controller
         $vaxRecord->update($validated);
 
         $patient = $vaxRecord->patient;
+        if (!$patient) {
+            return redirect()->route('patients.index')->with('error', 'Patient not found.');
+        }
 
         return redirect()->route('patients.vaxRecords.index', $patient)
             ->with('success', 'Vaccination Record was updated successfully.');
@@ -131,6 +141,9 @@ class VaxRecordController extends Controller
     public function destroy(VaxRecord $vaxRecord)
     {
         $patient = $vaxRecord->patient;
+        if (!$patient) {
+            return redirect()->route('patients.index')->with('error', 'Patient not found.');
+        }
         $vaxRecord->delete();
 
         return redirect()->route('patients.vaxRecords.index', $patient)
