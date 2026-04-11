@@ -102,10 +102,21 @@
             position: relative;
         }
         
+        .nav-link, .navbar-nav .nav-link {
+            color: white !important;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
         .nav-link:hover {
             color: #9EB698 !important;
             transform: translateY(-2px);
         }
+        .navbar-collapse { visibility: visible !important; opacity: 1 !important; }
+        .navbar-toggler { border: none !important; }
+        .theme-toggle-btn { visibility: visible !important; opacity: 1 !important; color: white !important; }
         
         /* Cards */
         .card-modern {
