@@ -45,7 +45,7 @@ class EmailSchedule extends Mailable
     {
         $patientName = $this->vaxRecord->patient->fname;
         $scheduledDays = $this->vaxRecord->vaxSchedules
-            ->map(fn($schedule) => date('F d, Y h:i A', strtotime($schedule->scheduled_date)))
+            ->map(fn($schedule) => date('F d, Y', strtotime($schedule->scheduled_date)))
             ->toArray();
 
         return new Content(

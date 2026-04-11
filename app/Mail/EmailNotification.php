@@ -2,9 +2,12 @@
 
 namespace App\Mail;
 
+use App\Models\VaxSchedule;
+use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
@@ -14,12 +17,11 @@ class EmailNotification extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     */
-    public function __construct()
+    public String $dose_number;
+
+    public function __construct(String $dose_number)
     {
-        //
+        $this->dose_number = $dose_number;
     }
 
     /**
@@ -28,7 +30,8 @@ class EmailNotification extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Email Notification',
+            from: new Address('reception@animalbiteclinic.com', 'Animal Bite Clinic Receptionist'),
+            subject: 'Antirabies Schedule Reminder'
         );
     }
 
@@ -37,8 +40,13 @@ class EmailNotification extends Mailable
      */
     public function content(): Content
     {
+        $today = Carbon::now()->toDateString();
         return new Content(
-            view: 'view.name',
+            view: 'mails.emailNotification',
+            with:[
+                'dose_number' => $this->dose_number,
+                'today' =>  date('F d, Y', strtotime($today))
+            ]
         );
     }
 

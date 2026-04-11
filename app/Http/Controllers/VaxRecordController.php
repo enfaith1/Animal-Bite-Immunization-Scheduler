@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\EmailNotification;
 use App\Mail\EmailSchedule;
 use App\Models\Patient;
 use App\Models\VaxRecord;

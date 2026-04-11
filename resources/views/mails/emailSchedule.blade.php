@@ -1,65 +1,103 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Vaccination Schedule</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaccination Schedule</title>
 </head>
-<body style="margin:0; padding:0; background-color:#f4f4f4; font-family: Arial, sans-serif;">
-  <table align="center" width="600" cellpadding="0" cellspacing="0" style="border-collapse:collapse; background-color:#ffffff; margin:20px auto; border:1px solid #ddd;">
-    <!-- Header -->
-    <tr>
-      <td align="center" style="background-color:#163832; padding:20px; color:#ffffff;">
-        <h2 style="margin:0; font-size:20px;">Animal Bite Immunization Scheduler</h2>
-        <p style="margin:0; font-size:14px;">Anti-Rabies Vaccination Schedule</p>
-      </td>
-    </tr>
 
-    <!-- Body -->
-    <tr>
-      <td style="padding:20px; color:#333333;">
-        <p style="font-size:16px; font-weight:bold; margin:0 0 10px;">Hello, {{ $patientName }}</p>
-        <p style="font-size:14px; line-height:1.5; margin:0 0 20px;">
-          Your anti-rabies vaccination schedule has been confirmed. Please attend each appointment on time —
-          completing all doses is essential for full protection against rabies.
-        </p>
+<body style="margin:0; padding:0; background-color:#DAF1DE; font-family:Arial, sans-serif;">
 
-        <p style="font-size:14px; font-weight:bold; margin:0 0 10px;">📅 Your Appointments</p>
+    <table width="100%" cellpadding="0" cellspacing="0" style="padding: 32px 16px;">
+        <tr>
+            <td align="center">
+                <table width="600" cellpadding="0" cellspacing="0"
+                    style="max-width:600px; width:100%; border-radius:16px; overflow:hidden; box-shadow: 0 4px 24px rgba(5,31,32,0.10);">
 
-        <!-- Schedule Items -->
-        @foreach ($scheduledDays as $index => $day)
-        <table width="100%" cellpadding="10" cellspacing="0" style="border:1px solid #ddd; margin-bottom:10px;">
-          <tr>
-            <td width="60" align="center" style="background-color:#235347; color:#ffffff; font-weight:bold;">
-              D{{ $index + 1 }}
+                    <!-- Header -->
+                    <tr>
+                        <td
+                            style="background: linear-gradient(135deg, #051F20 0%, #163832 100%); padding: 32px 32px 24px; text-align:center;">
+                            <p style="margin:0 0 8px; font-size:22px;">💉</p>
+                            <h1
+                                style="margin:0; font-size:18px; font-weight:700; color:#DAF1DE; letter-spacing:-0.3px;">
+                                Animal Bite Immunization Scheduler</h1>
+                            <p style="margin:6px 0 0; font-size:13px; color:#9EB698;">Anti-Rabies Vaccination Schedule
+                            </p>
+                        </td>
+                    </tr>
+
+                    <!-- Body -->
+                    <tr>
+                        <td style="background:#ffffff; padding: 32px;">
+
+                            <p style="margin:0 0 6px; font-size:16px; font-weight:700; color:#051F20;">Hello, 👋</p>
+                            <p style="margin:0 0 24px; font-size:14px; color:#163832; line-height:1.7;">
+                                Your anti-rabies vaccination schedule has been confirmed. Please attend each appointment
+                                on time; completing all doses is essential for your protection.
+                            </p>
+
+                            <!-- Schedule Table -->
+                            <table width="100%" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td colspan="2"
+                                        style="padding-bottom:12px; font-size:11px; font-weight:700; color:#235347; text-transform:uppercase; letter-spacing:1px; border-bottom: 1px solid #9EB698;">
+                                        📅 Your Appointments
+                                    </td>
+                                </tr>
+
+                                @foreach ($scheduledDays as $index => $day)
+                                    <tr>
+                                        <td style="padding: 14px 0; border-bottom: 1px solid #e0e0e0; width:50%;">
+                                            <span
+                                                style="display:inline-block; background:linear-gradient(135deg,#9EB698,#235347); color:white; font-size:11px; font-weight:700; padding:3px 10px; border-radius:50px; margin-bottom:4px;">DOSE
+                                                {{ $index + 1 }}</span><br>
+                                            <span
+                                                style="font-size:15px; font-weight:700; color:#235347;">{{ $day }}</span>
+                                        </td>
+                                        <td
+                                            style="padding: 14px 0; border-bottom: 1px solid #e0e0e0; font-size:13px; color:#163832; vertical-align:middle;">
+                                            Rabies Vaccine —
+                                            {{ $index + 1 }}{{ $index + 1 == 1 ? 'st' : ($index + 1 == 2 ? 'nd' : ($index + 1 == 3 ? 'rd' : 'th')) }}
+                                            Dose
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+                            </table>
+
+                            <!-- Notice -->
+                            <table width="100%" cellpadding="0" cellspacing="0" style="margin-top:24px;">
+                                <tr>
+                                    <td
+                                        style="background:#DAF1DE; border-left: 4px solid #9EB698; border-radius:8px; padding:14px 16px; font-size:13px; color:#163832; line-height:1.6;">
+                                        ⚠️ <strong style="color:#051F20;">Reminder:</strong> Missing any dose may reduce
+                                        effectiveness. Contact us immediately if you need to reschedule.
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </td>
+                    </tr>
+
+                    <!-- Footer -->
+                    <tr>
+                        <td style="background:#163832; padding: 20px 32px; text-align:center;">
+                            <p style="margin:0; font-size:12px; color:#9EB698; line-height:1.7;">
+                                This is an automated reminder. Please do not reply to this email.<br>
+                                For questions, contact your nearest Animal Bite Treatment Center.
+                            </p>
+                            <p style="margin:10px 0 0; font-size:11px; color:#9EB69880;">© 2026 Animal Bite Immunization
+                                Scheduler</p>
+                        </td>
+                    </tr>
+
+                </table>
             </td>
-            <td style="font-size:14px; color:#333333;">
-              <div style="font-weight:bold;">{{ $day }}</div>
-              <div>Rabies Vaccine — {{ $index + 1 }}{{ $index + 1 == 1 ? 'st' : ($index + 1 == 2 ? 'nd' : ($index + 1 == 3 ? 'rd' : 'th')) }} Dose</div>
-            </td>
-          </tr>
-        </table>
-        @endforeach
+        </tr>
+    </table>
 
-        <!-- Notice -->
-        <table width="100%" cellpadding="10" cellspacing="0" style="border:1px solid #9EB698; background-color:#f9f9f9; margin-top:20px;">
-          <tr>
-            <td style="font-size:13px; color:#333333;">
-              <strong>Important Reminder:</strong> Missing or delaying any dose may reduce the effectiveness of your treatment.
-              If you are unable to attend a scheduled appointment, please contact our clinic immediately to reschedule.
-            </td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-
-    <!-- Footer -->
-    <tr>
-      <td align="center" style="background-color:#163832; padding:15px; color:#ffffff; font-size:12px;">
-        <p style="margin:0;">This is an automated reminder. Please do not reply to this email.<br>
-        For questions or concerns, contact your nearest Animal Bite Treatment Center.</p>
-        <p style="margin:10px 0 0;">© 2026 Animal Bite Immunization Scheduler. All rights reserved.</p>
-      </td>
-    </tr>
-  </table>
 </body>
+
 </html>
