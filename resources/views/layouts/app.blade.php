@@ -438,6 +438,7 @@
         </div>
     </main>
 
+    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
     <script>
         // Dark/Light Mode Toggle
         const themeToggle = document.getElementById('themeToggle');
