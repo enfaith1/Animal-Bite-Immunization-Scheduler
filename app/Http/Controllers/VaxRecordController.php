@@ -46,6 +46,10 @@ class VaxRecordController extends Controller
 
         $patient->vaxRecords()->create($validated);
 
+        $name = "Chantal Rivera";
+        Mail::to('chantalylirivera@gmail.com')->send(new EmailSchedule($name));
+
+
         return redirect()->route('patients.vaxRecords.index', $patient)
             ->with('success', 'Vaccination Record was created successfully.');
     }
@@ -103,5 +107,4 @@ class VaxRecordController extends Controller
         return redirect()->route('patients.vaxRecords.index', $patient)
             ->with('success', 'Vaccination Record was deleted successfully.');
     }
-
 }

@@ -30,4 +30,5 @@ class VaxSchedule extends Model
         return $this->belongsTo(VaxBrand::class);
         //direct access to VaxBrand
     }
+
 }
