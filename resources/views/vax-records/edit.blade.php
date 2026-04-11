@@ -15,7 +15,7 @@
                         </a>
                     </div>
                     <p class="text-white-50 mb-0 small mt-1">
-                        <i class="fas fa-user me-1"></i> Patient: {{ $patient->fname }} {{ $patient->lname }}
+                        <i class="fas fa-user me-1"></i> Patient: {{ isset($patient) && $patient ? $patient->fname . ' ' . $patient->lname : 'N/A' }}
                     </p>
                 </div>
                 
@@ -36,8 +36,11 @@
                                 </div>
                                 
                                 <div class="mb-3">
-                                    <label class="form-label fw-semibold">Place of Exposure</label>
-                                    <input type="text" name="place_of_exposure" class="form-control rounded-3" value="{{ old('place_of_exposure', $vaxRecord->place_of_exposure) }}" placeholder="e.g., Barangay Hall, School">
+                                    <label class="form-label fw-semibold">Place of Exposure <span class="text-danger">*</span></label>
+                                    <input type="text" name="place_of_exposure" class="form-control rounded-3 @error('place_of_exposure') is-invalid @enderror" value="{{ old('place_of_exposure', $vaxRecord->place_of_exposure) }}" placeholder="e.g., Barangay Hall, School">
+                                    @error('place_of_exposure')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 
                                 <div class="mb-3">
@@ -126,7 +129,7 @@
                                             <div class="col-md-12">
                                                 <div class="d-flex flex-wrap gap-4">
                                                     @php
-                                                        $existingDays = $vaxRecord->schedules->pluck('dose_day')->toArray();
+                                                        $existingDays = $vaxRecord->vaxSchedules->pluck('dose_day')->toArray();
                                                     @endphp
                                                     <div class="form-check">
                                                         <input type="checkbox" name="vaccination_days[]" value="Day 0" id="day0" class="form-check-input" {{ in_array('Day 0', $existingDays) ? 'checked' : '' }}>
