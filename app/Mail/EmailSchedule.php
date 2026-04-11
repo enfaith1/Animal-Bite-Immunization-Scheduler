@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\VaxRecord;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -18,9 +19,12 @@ class EmailSchedule extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(public $name)
+
+    public VaxRecord $vaxRecord;
+
+    public function __construct(VaxRecord $vaxRecord)
     {
-        //
+        $this->vaxRecord = $vaxRecord;
     }
 
     /**
@@ -39,10 +43,16 @@ class EmailSchedule extends Mailable
      */
     public function content(): Content
     {
+        $patientName = $this->vaxRecord->patient->fname;
+        $scheduledDays = $this->vaxRecord->vaxSchedules
+            ->map(fn($schedule) => date('F d, Y h:i A', strtotime($schedule->scheduled_date)))
+            ->toArray();
+
         return new Content(
             view: 'mails.emailSchedule',
-            with:[
-                'patientName' =>$this->name
+            with: [
+                'patientName' => $patientName,
+                'scheduledDays' => $scheduledDays
             ]
         );
     }

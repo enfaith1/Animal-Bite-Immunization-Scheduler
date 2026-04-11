@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\EmailSchedule;
 use App\Models\Patient;
 use App\Models\VaxRecord;
 use App\Models\VaxSchedule;
@@ -73,8 +74,7 @@ class VaxRecordController extends Controller
             ]);
         }
 
-        // $name = "Chantal Rivera";
-        // Mail::to('chantalylirivera@gmail.com')->send(new EmailSchedule($name));
+        Mail::to($patient->email)->send(new EmailSchedule($vaxRecord));
 
         return redirect()->route('patients.vaxRecords.index', $patient)
             ->with('success', 'Vaccination Record was created successfully.');
