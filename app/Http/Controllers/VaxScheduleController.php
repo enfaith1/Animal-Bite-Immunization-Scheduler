@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\VaxRecord;
+use App\Models\VaxSchedule;
 use Illuminate\Http\Request;
 
 class VaxScheduleController extends Controller
@@ -60,9 +61,18 @@ class VaxScheduleController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, VaxSchedule $vaxSchedule)
     {
-        //
+        $validated = $request->validate([
+            'status' => 'required|string|in:Completed,Upcoming,Missed',
+            'actual_date' => 'nullable|date',
+        ]);
+
+        $vaxSchedule->update($validated);
+
+        return redirect()
+            ->route('vaxRecords.show', $vaxSchedule->vaxRecord)
+            ->with('success', 'Schedule updated.');
     }
 
     /**

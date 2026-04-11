@@ -9,7 +9,7 @@
                 <div class="text-center py-5 px-3" style="background: linear-gradient(135deg, #235347 0%, #163832 100%);">
                     <h1 class="display-5 fw-bold text-white mb-1">{{ $patient->fname }} {{ $patient->lname }}</h1>
                     <p class="text-white-50 mb-0">
-                        <i class="fas fa-id-card me-1"></i> Patient ID: {{ $patient->patient_id }}
+                        <i class="fas fa-id-card me-1"></i> Patient ID: {{ $patient->id }}
                     </p>
                 </div>
                 
@@ -134,13 +134,13 @@
                         <a href="{{ route('patients.index') }}" class="btn btn-secondary rounded-pill px-4">
                             <i class="fas fa-arrow-left me-2"></i> Back
                         </a>
-                        <a href="{{ route('patients.edit', $patient->patient_id) }}" class="btn px-4 py-2 rounded-pill fw-semibold" style="background: #DAF1DE; color: #051F20; border: none;">
+                        <a href="{{ route('patients.edit', $patient) }}" class="btn px-4 py-2 rounded-pill fw-semibold" style="background: #DAF1DE; color: #051F20; border: none;">
                             <i class="fas fa-edit me-2"></i> Edit Patient
                         </a>
-                        <a href="{{ route('vax-records.index', $patient->patient_id) }}" class="btn btn-success-custom btn-modern px-4">
+                        <a href="{{ route('patients.vaxRecords.index', $patient) }}" class="btn btn-success-custom btn-modern px-4">
                             <i class="fas fa-vaccine me-2"></i> View Vaccination Records
                         </a>
-                        <form action="{{ route('patients.destroy', $patient->patient_id) }}" method="POST" class="d-inline">
+                        <form action="{{ route('patients.destroy', $patient) }}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn px-4 py-2 rounded-pill fw-semibold text-white" style="background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); border: none;" onclick="return confirm('Delete this patient? This action cannot be undone.')">

@@ -168,7 +168,7 @@
                                 <h1 class="text-white fw-bold mb-2 display-5">{{ $patient->fname }} {{ $patient->lname }}</h1>
                                 <div class="d-flex gap-3 mt-2 flex-wrap">
                                     <span class="badge bg-light text-dark rounded-pill px-3 py-2">
-                                        <i class="fas fa-id-card me-1" style="color: #235347;"></i> Patient ID: {{ $patient->patient_id }}
+                                        <i class="fas fa-id-card me-1" style="color: #235347;"></i> Patient ID: {{ $patient->id }}
                                     </span>
                                     <span class="badge bg-light text-dark rounded-pill px-3 py-2">
                                         <i class="fas fa-phone me-1" style="color: #235347;"></i> {{ $patient->contact_num }}
@@ -181,10 +181,10 @@
                         </div>
                         <div class="col-md-4 text-end">
                             <div class="d-flex gap-2 justify-content-end">
-                                <a href="{{ route('patients.show', $patient->patient_id) }}" class="btn btn-outline-light rounded-pill px-4">
+                                <a href="{{ route('patients.show', $patient) }}" class="btn btn-outline-light rounded-pill px-4">
                                     <i class="fas fa-arrow-left me-2"></i> Back to Patient
                                 </a>
-                                <a href="{{ route('vax-records.create', $patient->patient_id) }}" class="btn btn-light rounded-pill px-4" style="color: #235347; font-weight: 600;">
+                                <a href="{{ route('patients.vaxRecords.create', $patient) }}" class="btn btn-light rounded-pill px-4" style="color: #235347; font-weight: 600;">
                                     <i class="fas fa-plus me-2"></i> Add Record
                                 </a>
                             </div>
@@ -216,7 +216,7 @@
                                 @forelse($vaxRecords as $record)
                                 <tr class="border-bottom">
                                     <td class="py-3 px-4">
-                                        <span class="fw-bold fs-5 record-id">#{{ $record->vax_rec_id }}</span>
+                                        <span class="fw-bold fs-5 record-id">#{{ $record->id }}</span>
                                     </td>
                                     <td class="py-3">
                                         <div class="d-flex align-items-center gap-2">
@@ -243,13 +243,13 @@
                                     </td>
                                     <td class="py-3 text-center">
                                         <div class="d-flex gap-2 justify-content-center">
-                                            <a href="{{ route('vax-records.show', [$patient->patient_id, $record->vax_rec_id]) }}" class="btn btn-sm rounded-pill px-3 btn-open">
+                                            <a href="{{ route('vaxRecords.show', $record) }}" class="btn btn-sm rounded-pill px-3 btn-open">
                                                 <i class="fas fa-eye me-1"></i> Open
                                             </a>
-                                            <a href="{{ route('vax-records.edit', [$patient->patient_id, $record->vax_rec_id]) }}" class="btn btn-sm rounded-pill px-3 btn-edit">
+                                            <a href="{{ route('vaxRecords.edit', $record) }}" class="btn btn-sm rounded-pill px-3 btn-edit">
                                                 <i class="fas fa-edit me-1"></i> Edit
                                             </a>
-                                            <form action="{{ route('vax-records.destroy', [$patient->patient_id, $record->vax_rec_id]) }}" method="POST" class="d-inline">
+                                            <form action="{{ route('vaxRecords.destroy', $record) }}" method="POST" class="d-inline">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm rounded-pill px-3 btn-delete" onclick="return confirm('Delete this record? This action cannot be undone.')">
@@ -266,7 +266,7 @@
                                             <i class="fas fa-syringe fa-4x mb-3" style="color: #9EB698;"></i>
                                             <h4 class="fw-bold" style="color: #235347;">No Vaccination Records Found</h4>
                                             <p class="text-muted mb-4">This patient doesn't have any vaccination records yet.</p>
-                                            <a href="{{ route('vax-records.create', $patient->patient_id) }}" class="btn rounded-pill px-4 py-2 text-white" style="background: linear-gradient(135deg, #9EB698 0%, #235347 100%);">
+                                            <a href="{{ route('patients.vaxRecords.create', $patient) }}" class="btn rounded-pill px-4 py-2 text-white" style="background: linear-gradient(135deg, #9EB698 0%, #235347 100%);">
                                                 <i class="fas fa-plus me-2"></i> Add First Record
                                             </a>
                                         </div>
