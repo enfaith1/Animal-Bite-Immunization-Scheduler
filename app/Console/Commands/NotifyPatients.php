@@ -3,7 +3,6 @@
 namespace App\Console\Commands;
 
 use App\Mail\EmailNotification;
-use App\Models\Patient;
 use App\Models\VaxSchedule;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
@@ -18,7 +17,7 @@ class NotifyPatients extends Command
      *
      * @var string
      */
-    protected $signature = 'app:notify-patients';
+    protected $signature = 'app:notify';
 
     /**
      * The console command description.
@@ -36,20 +35,16 @@ class NotifyPatients extends Command
 
         $schedules = VaxSchedule::whereDate('scheduled_date', $today)
             ->where('dose_day', '>', 0)
-            ->get(); 
+            ->get();
 
         foreach ($schedules as $schedule) {
-            if ($schedule->dose_day == 0) {
-                return;
-            }
-
             $email = $schedule->vaxRecord->patient->email;
 
-            $dose_number = match ($schedule->dose_day){
-                3 => '2',
-                7 => '3',
-                14 => '4',
-                28 => '5'
+            $dose_number = match ($schedule->dose_day) {
+                '3' => '2',
+                '7' => '3',
+                '14' => '4',
+                '28' => '5'
             };
 
             Mail::to($email)->send(new EmailNotification($dose_number));

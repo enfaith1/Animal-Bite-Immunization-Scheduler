@@ -4,7 +4,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\VaxRecordController;
 use App\Http\Controllers\VaxScheduleController;
-use App\Mail\EmailSchedule;
+use App\Mail\EmailNotification;
+use App\Models\VaxSchedule;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 

@@ -8,4 +8,5 @@ Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
 
-Schedule::command('app:notify-patients')->dailyAt('06:00');
+Schedule::command('app:notify')->daily(); 
+// Chan, use php artisan app:notify

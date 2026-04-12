@@ -45,10 +45,11 @@
                     <span style="font-size:15px; font-weight:700; color:#235347;">{{ $today }}</span>
                   </td>
                   <td style="padding: 14px 0; border-bottom: 1px solid #e0e0e0; font-size:13px; color:#163832; vertical-align:middle;">
-                    Rabies Vaccine — {{ $dose_number }}{{ $dose_number == 1 ? 'st' : ($index + 1 == 2 ? 'nd' : ($index + 1 == 3 ? 'rd' : 'th')) }} Dose
+                    Rabies Vaccine — {{ $dose_number }}{{ $dose_number == '2' ? 'nd' : ($dose_number == '3' ? 'rd' : 'th') }} Dose
                   </td>
                 </tr>
-
+              </table>
+              
               <!-- Notice -->
               <table width="100%" cellpadding="0" cellspacing="0" style="margin-top:24px;">
                 <tr>
