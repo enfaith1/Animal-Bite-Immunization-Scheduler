@@ -12,7 +12,18 @@ class PatientController extends Controller
      */
     public function index()
     {
-        $patients = Patient::latest()->paginate(10);
+        $query = Patient::latest();
+
+        if (request()->has('search')) {
+            $query->where(function($q){
+                $search = request()->input('search');
+                $q->where('fname', 'like', "%{$search}%")
+                ->orWhere('lname', 'like', "%{$search}%");
+            });
+        }
+
+        $patients = $query->paginate(10);
+
         return view('patients.index', compact('patients'));
     }
 

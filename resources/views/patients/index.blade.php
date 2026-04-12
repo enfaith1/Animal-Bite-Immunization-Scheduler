@@ -2,24 +2,25 @@
 
 @section('content')
     <style>
-        .search-container {
-            position: relative;
+        .search-bar {
+            max-width: 500px;
+            margin: auto auto;
         }
 
-        .search-input {
-            height: 50px;
+        .search-bar .input-group {
             border-radius: 30px;
-            padding-left: 35px;
-            border: none;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .search-icon {
-            position: absolute;
-            top: 50%;
-            left: 25px;
-            transform: translateY(-50%);
-            color: #888;
+        .search-bar .form-control {
+            border: none;
+            padding-left: 20px;
+        }
+
+        .search-bar .btn {
+            border: none;
+            padding: 10px 20px;
         }
     </style>
     <div class="container">
@@ -33,13 +34,18 @@
                         </h1>
                         <p class="text-muted mt-2">Manage and track all patients in the immunization system</p>
                     </div>
-                    <div class="search-container col-4 align-self-center">
-                        <form action="">
-                            <input type="text" class="form-control search-input" placeholder="Search Patient...">
-                            <i class="fas fa-search search-icon"></i>
+                    <div class="search-bar col-4 align-self-center">
+                        <form action="{{ route('patients.index') }}" method="GET">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search Patient..." name="search">
+                                <button class="btn btn-outline-secondary" type="submit">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
                         </form>
                     </div>
-                    <a href="{{ route('patients.create') }}" class="btn btn-primary-custom btn-modern col-2  align-self-center">
+                    <a href="{{ route('patients.create') }}"
+                        class="btn btn-primary-custom btn-modern col-2  align-self-center">
                         <i class="fas fa-plus me-2"></i> Add New Patient
                     </a>
                 </div>
@@ -118,11 +124,9 @@
                                             <td colspan="6" class="text-center py-5">
                                                 <i class="fas fa-user-slash fa-4x mb-3" style="color: #9EB698;"></i>
                                                 <h4 class="fw-bold">No Patients Found</h4>
-                                                <p class="text-muted">Click "Add New Patient" to get started with your first
-                                                    patient record.</p>
                                                 <a href="{{ route('patients.create') }}"
                                                     class="btn btn-primary-custom btn-modern mt-3">
-                                                    <i class="fas fa-plus me-2"></i> Add Your First Patient
+                                                    <i class="fas fa-plus me-2"></i> Add a Patient
                                                 </a>
                                             </td>
                                         </tr>
