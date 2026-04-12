@@ -115,55 +115,6 @@
                                 </div>
                             </div>
                             
-                            <!-- Vaccination Schedule Section -->
-                            <div class="col-12">
-                                <div class="card rounded-3 mt-2" style="background: var(--bg-secondary); border: 1px solid var(--border-color);">
-                                    <div class="card-header" style="background: #DAFIDE;">
-                                        <h5 class="mb-0 fw-semibold" style="color: #235347;">
-                                            <i class="fas fa-calendar-alt me-2"></i> Vaccination Schedule
-                                        </h5>
-                                        <small class="text-muted">Select which vaccine doses to schedule</small>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="d-flex flex-wrap gap-4">
-                                                    @php
-                                                        $existingDays = $vaxRecord->vaxSchedules->pluck('dose_day')->toArray();
-                                                    @endphp
-                                                    <div class="form-check">
-                                                        <input type="checkbox" name="vaccination_days[]" value="Day 0" id="day0" class="form-check-input" {{ in_array('Day 0', $existingDays) ? 'checked' : '' }}>
-                                                        <label class="form-check-label fw-semibold" for="day0">Day 0 (Today)</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input type="checkbox" name="vaccination_days[]" value="Day 3" id="day3" class="form-check-input" {{ in_array('Day 3', $existingDays) ? 'checked' : '' }}>
-                                                        <label class="form-check-label fw-semibold" for="day3">Day 3</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input type="checkbox" name="vaccination_days[]" value="Day 7" id="day7" class="form-check-input" {{ in_array('Day 7', $existingDays) ? 'checked' : '' }}>
-                                                        <label class="form-check-label fw-semibold" for="day7">Day 7</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input type="checkbox" name="vaccination_days[]" value="Day 14" id="day14" class="form-check-input" {{ in_array('Day 14', $existingDays) ? 'checked' : '' }}>
-                                                        <label class="form-check-label fw-semibold" for="day14">Day 14</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input type="checkbox" name="vaccination_days[]" value="Day 28" id="day28" class="form-check-input" {{ in_array('Day 28', $existingDays) ? 'checked' : '' }}>
-                                                        <label class="form-check-label fw-semibold" for="day28">Day 28</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="mt-3">
-                                            <div class="form-check">
-                                                <input type="checkbox" id="selectAll" class="form-check-input" {{ count($existingDays) == 5 ? 'checked' : '' }}>
-                                                <label class="form-check-label fw-semibold" style="color: #9EB698;">Select All Doses</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
                             <!-- Remarks -->
                             <div class="col-12">
                                 <div class="mb-3">
