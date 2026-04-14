@@ -4,7 +4,7 @@
 - Choose a folder to clone the repository
 - Open a terminal to that directory
 - Run `git clone https://github.com/enfaith1/Animal-Bite-Immunization-Scheduler.git`
-- Move into the project directory `cd repository`
+- Move into the project directory `cd Animal-Bite-Immunization-Scheduler`
 
 ## STEP 2: Install Dependencies
 - Ensure you have PHP 8.4.0+ and Composer 2.9.5+
