@@ -1,3 +1,8 @@
+## Members:
+1. Chantal Rivera
+2. Natalio Solis
+3. Cheska Tan
+
 ### SETUP GUIDE
 
 ## STEP 1: Cloning the Repository
@@ -51,3 +56,6 @@ MAIL_FROM_NAME="${APP_NAME}"
 - Access the app at http://127.0.0.1:8000
 - You will be met with this page:
 ![Login Page of the System](LoginPage.png)
+
+# Email Notification Test
+- To send email notifications for patients scheduled on the day, use the command `php artisan app:notify` in the terminal 
