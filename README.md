@@ -7,10 +7,9 @@
 - Move into the project directory `cd Animal-Bite-Immunization-Scheduler`
 
 ## STEP 2: Install Dependencies
-- Ensure you have PHP 8.4.0+ and Composer 2.9.5+
+- Ensure you have PHP 8.4.0+ and Composer 2.9.5+ `php -v` and `composer -v`
 - If not, use the commands found on [Laravel's Official Website](https://laravel.com/docs/12.x/installation#creating-a-laravel-project)
-- Run `composer install` and `npm install` on your terminal
-- Also run `npm run dev` and `npm run build`
+- Run `composer install` and `npm install` and `npm run build`on your terminal
 
 ## STEP 3: Create the Database
 - Open a Local Server Environment like XAMPP or Laragon
@@ -50,3 +49,5 @@ MAIL_FROM_NAME="${APP_NAME}"
 ## STEP 6: Start the Deployment Server
 - Run in terminal `php artisan serve`
 - Access the app at http://127.0.0.1:8000
+- You will be met with this page:
+![Login Page of the System](LoginPage.png)
