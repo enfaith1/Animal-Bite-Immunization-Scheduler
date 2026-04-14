@@ -13,6 +13,6 @@ class VaxScheduleSeeder extends Seeder
      */
     public function run(): void
     {
-        VaxSchedule::factory()->count(20)->create();
+        VaxSchedule::factory()->count(30)->create();
     }
 }

@@ -72,7 +72,11 @@
                                         <p class="fw-medium mb-0">{{ $vaxRecord->animal_condition }}</p>
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label fw-semibold text-muted small">RABIES BRAND</label>
+                                        <label class="form-label fw-semibold text-muted small">ANTIRABIES BRAND</label>
+                                        <p class="fw-medium mb-0">{{ $vaxRecord->vaxSchedules->first()?->vaxBrand->brand_name ?: 'N/A' }}</p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label fw-semibold text-muted small">RIG BRAND</label>
                                         <p class="fw-medium mb-0">{{ $vaxRecord->rig_brand ?: 'N/A' }}</p>
                                     </div>
                                     <div class="mb-3">

@@ -13,6 +13,6 @@ class VaxRecordSeeder extends Seeder
      */
     public function run(): void
     {
-        VaxRecord::factory()->count(10)->create();
+        VaxRecord::factory()->count(30)->create();
     }
 }
