@@ -6,12 +6,6 @@
 - Run `git clone https://github.com/enfaith1/Animal-Bite-Immunization-Scheduler.git`
 - Move into the project directory `cd repository`
 
-- Have PHP and Composer
-- Use "composer install" for the dependencies
-- Create an empty animal_bite_center_db database in MySQL (for db migration, see below)
-- Update the .env file with the details below
-- Use "php artisan key:generate"
-
 ## STEP 2: Install Dependencies
 - Ensure you have PHP 8.4.0+ and Composer 2.9.5+
 - If not, use the commands found on [Laravel's Official Website](https://laravel.com/docs/12.x/installation#creating-a-laravel-project)
