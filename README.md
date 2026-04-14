@@ -3,7 +3,7 @@
 2. Natalio Solis
 3. Cheska Tan
 
-### SETUP GUIDE
+# SETUP GUIDE
 
 ## STEP 1: Cloning the Repository
 - Choose a folder to clone the repository
@@ -57,5 +57,5 @@ MAIL_FROM_NAME="${APP_NAME}"
 - You will be met with this page:
 ![Login Page of the System](LoginPage.png)
 
-# Email Notification Test
+### Email Notification Test
 - To send email notifications for patients scheduled on the day, use the command `php artisan app:notify` in the terminal 
