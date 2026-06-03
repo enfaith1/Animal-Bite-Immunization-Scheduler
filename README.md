@@ -41,8 +41,8 @@ MAIL_MAILER=smtp
 MAIL_SCHEME=null
 MAIL_HOST=smtp.gmail.com
 MAIL_PORT=587
-MAIL_USERNAME=crivera_240000001717@uic.edu.ph
-MAIL_PASSWORD=sywqdmjigsmgfoui
+MAIL_USERNAME=-------------------------
+MAIL_PASSWORD=-------------------------
 MAIL_FROM_ADDRESS="hello@example.com"
 MAIL_FROM_NAME="${APP_NAME}"
 ```
